@@ -4,11 +4,13 @@ This is just a quick program to try and demonstrate some basic object concepts t
 
 ## Concepts:
 - Instantiating objects
--- Using a default constructor
--- Using a parameterized constructor
+   - Using a default constructor
+   - Using a parameterized constructor
 - Accessor/Mutator Methods
 - Pseudo Random Numbers (with exclusive upper bounds)
 - Methods and passing objects to/from them
+- While loops
+- If/Else
 - Constants
 - Try/Catch
 - Overriding the ToString Method on a class
