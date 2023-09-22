@@ -4,6 +4,8 @@ public class AnimalArena {
     public static Random rand = new Random();
     public static final int MAXHEALTH = 20;
     public static final int MAXSTRENGTH = 10;
+
+    public static final int MILLIDELAY = 500; //use this variable to control timing in console output.
     public static void main(String[] args) {
         Animal liz = CreateAnimalUsingDefaultConstructorAndMutators();
         Animal dog = CreateAnimalWithParameterizedConstructor();
@@ -31,30 +33,14 @@ public class AnimalArena {
     }
 
     public static void Fight(Animal a1, Animal a2){
-        int millidelay = 500; //use this variable to control timing.
 
         //loop as long as both animals are alive
         while(a1.getHealth() > 0 && a2.getHealth() > 0){
-            //get a random attack value
-            int attack = rand.nextInt(a1.getStrength());
-            //use getter methods to print stats
-            System.out.println(a1.getType() + " attacks " + a2.getType() +
-                    " delivering " + attack + " damage");
-            //update the animals health with the setter
-            a2.setHealth(a2.getHealth() - attack);
-            pause(millidelay);
-            System.out.println(a2.getType() + " has " + a2.getHealth() + " health remaining.");
-            pause(millidelay);
+            animalAttack(a1, a2);
             if(a2.getHealth() <= 0){
                 System.out.println(a2.getType() + " is dead. " + a1.getType() + " won");
             }else{
-                attack = rand.nextInt(a2.getStrength());
-                System.out.println(a2.getType() + " attacks " + a1.getType() +
-                        " delivering " + attack + " damage");
-                a1.setHealth(a1.getHealth() - attack);
-                pause(millidelay);
-                System.out.println(a1.getType() + " has " + a1.getHealth() + " health remaining.");
-                pause(millidelay);
+                animalAttack(a2, a1);
                 if(a1.getHealth() <= 0){
                     System.out.println(a1.getType() + " is dead. " + a2.getType() + " won");
                 }
@@ -62,6 +48,18 @@ public class AnimalArena {
         }
     }
 
+    public static void animalAttack(Animal attacker, Animal defender){
+        //get a random attack value
+        int attack = rand.nextInt(attacker.getStrength());
+        //use getter methods to print stats
+        System.out.println(attacker.getType() + " attacks " + defender.getType() +
+                " delivering " + attack + " damage");
+        //update the animals health with the setter
+        defender.setHealth(defender.getHealth() - attack);
+        pause(MILLIDELAY);
+        System.out.println(defender.getType() + " has " + defender.getHealth() + " health remaining.");
+        pause(MILLIDELAY);
+    }
     /**
      * helper method to clean up code a bit and pull the try/catch sleep out
      */
