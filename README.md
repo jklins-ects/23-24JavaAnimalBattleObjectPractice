@@ -13,5 +13,5 @@ This is just a quick program to try and demonstrate some basic object concepts t
 - If/Else
 - Constants
 - Try/Catch
-- Overriding the ToString Method on a class
+- Overriding the toString Method on a class
 - the keyword *this*
