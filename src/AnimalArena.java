@@ -50,7 +50,7 @@ public class AnimalArena {
 
     public static void animalAttack(Animal attacker, Animal defender){
         //get a random attack value
-        int attack = rand.nextInt(attacker.getStrength());
+        int attack = rand.nextInt(attacker.getStrength() + 1);
         //use getter methods to print stats
         System.out.println(attacker.getType() + " attacks " + defender.getType() +
                 " delivering " + attack + " damage");
