@@ -1,4 +1,7 @@
+import java.util.Random;
+
 public class Animal {
+    public static Random rand = new Random();
     private String type;
     private int strength;
 
@@ -43,6 +46,16 @@ public class Animal {
         }else{
             this.health = health;
         }
+    }
+
+    public int attack(){
+        return rand.nextInt(getStrength() + 1);
+    }
+
+
+
+    public AnimalAttack detailedAttack(){
+        return new AnimalAttack("attacks", attack());
     }
 
     /**
