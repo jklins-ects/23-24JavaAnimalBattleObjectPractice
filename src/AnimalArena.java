@@ -28,7 +28,7 @@ public class AnimalArena {
         int strength = rand.nextInt(MAXSTRENGTH) + 1; //+1 to make sure it's between 1 and 10
         int health = rand.nextInt(11,MAXHEALTH + 1); // +1 to set the EXCLUSIVE upper bound to max+1
         //parameterized constructor. We create an OBJECT from the Animal CLASS
-        Animal a = new Animal("dog",strength,health);
+        Animal a = new Mammal("dog",strength,health);
         return a;
     }
 
@@ -50,8 +50,25 @@ public class AnimalArena {
 
     public static void animalAttack(Animal attacker, Animal defender){
         //get a random attack value
-        int attack = rand.nextInt(attacker.getStrength() + 1);
+        int attack;
+        if(attacker instanceof Mammal){
+            AnimalAttack a = attacker.detailedAttack();
+            attack = a.getDamage();
+            System.out.println(ConsoleColors.RED + attacker.getType() + " attacks with " + a.getAttackType()+ ConsoleColors.RESET);
+        }else{
+            attack = attacker.attack();
+        }
+
         //use getter methods to print stats
+        if(defender instanceof Mammal){
+            Mammal def = (Mammal) defender;
+            System.out.println("Defended!");
+            int newAttack = def.defend(attack);
+            if(newAttack < attack){
+                System.out.println(ConsoleColors.GREEN + "Damage reduced from " + attack + " to " + newAttack + ConsoleColors.RESET);
+            }
+            attack = newAttack;
+        }
         System.out.println(attacker.getType() + " attacks " + defender.getType() +
                 " delivering " + attack + " damage");
         //update the animals health with the setter
