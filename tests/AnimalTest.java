@@ -1,14 +1,16 @@
-import static org.junit.Assert.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+//import static org.junit.Assert.*;
 
 import org.junit.Before;
-import org.junit.Test;
+//import org.junit.Test;
+import org.junit.jupiter.api.*;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class AnimalTest {
 
     private Animal animal;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         animal = new Animal("dog", 5, 15);
     }
@@ -62,4 +64,11 @@ public class AnimalTest {
     public void testToString() {
         assertEquals("Animal{type='dog', strength=5, health=15}", animal.toString());
     }
+
+    @Test
+    public void testDetailedAttack() {
+        assertNotNull(animal.detailedAttack());
+        assertEquals("attacks", animal.detailedAttack().getAttackType());
+    }
+
 }
