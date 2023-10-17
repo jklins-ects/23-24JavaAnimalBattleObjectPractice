@@ -25,4 +25,9 @@ public class Mammal extends Animal{
         int attackNum = rand.nextInt(3);
         return attacks[attackNum];
     }
+
+    @Override
+    public String toString(){
+        return super.toString() + " : Mammal";
+    }
 }

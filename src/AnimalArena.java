@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class AnimalArena {
     public static Random rand = new Random();
@@ -19,14 +20,14 @@ public class AnimalArena {
         //default constructor. We create an OBJECT from the Animal CLASS
         Animal a = new Animal();
         a.setType("lizard"); //mutator methods. Notice "set[Property]"
-        a.setStrength(rand.nextInt(MAXSTRENGTH) + 1);//+1 to make sure it's between 1 and 10
-        a.setHealth(rand.nextInt(11,MAXHEALTH + 1));// +1 to set the EXCLUSIVE upper bound to max+1
+        a.setStrength(ThreadLocalRandom.current().nextInt((MAXSTRENGTH )+ 1));//+1 to make sure it's between 1 and 10
+        a.setHealth(ThreadLocalRandom.current().nextInt(11,MAXHEALTH + 1));// +1 to set the EXCLUSIVE upper bound to max+1
         return a;
     }
 
     public static Animal CreateAnimalWithParameterizedConstructor(){
-        int strength = rand.nextInt(MAXSTRENGTH) + 1; //+1 to make sure it's between 1 and 10
-        int health = rand.nextInt(11,MAXHEALTH + 1); // +1 to set the EXCLUSIVE upper bound to max+1
+        int strength = ThreadLocalRandom.current().nextInt((MAXSTRENGTH )+ 1); //+1 to make sure it's between 1 and 10
+        int health = ThreadLocalRandom.current().nextInt(11,MAXHEALTH + 1); // +1 to set the EXCLUSIVE upper bound to max+1
         //parameterized constructor. We create an OBJECT from the Animal CLASS
         Animal a = new Mammal("dog",strength,health);
         return a;
